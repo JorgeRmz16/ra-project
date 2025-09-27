@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ejercicio VR - Mi primer mundo 3D</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <!-- Cámara con cursor para interacción por mirada (mobile cardboard) -->
+        <a-entity id="cam" camera look-controls position="0 1.6 0">
+            <a-entity cursor="fuse: true; fuseTimeout: 1000" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.01; radiusOuter:
+0.02" material="shader: flat; color: black">
+            </a-entity>
+        </a-entity>
+        <!-- Suelo -->
+        <a-plane rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a- plane>
+            <!-- Objetos -->
+            <a-sphere id="miEsfera" position="0 1.25 -3" radius="1" color="#EF2D5E"></a-sphere>
+            <a-box id="miCubo" position="-2 0.5 -3" rotation="0 45 0" depth="1" height="1" width="1" color="#4CC3D9"
+                animation="property: rotation; to: 0 405 0; loop: true; dur:
+8000"></a-box>
+            <a-cylinder position="2 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+            <!-- Cielo -->
+            <a-sky color="#ECECEC"></a-sky>
+            <!-- Script para interacción -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var esfera = document.querySelector('#miEsfera');
+                    esfera.addEventListener('click', function () {
+                        // Cambia color de la esfera cuando se "clickea" o se mira con fuse
+                        var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                        this.setAttribute('color', color);
+                    });
+                });
+            </script>
+    </a-scene>
+</body>
+
+</html>
